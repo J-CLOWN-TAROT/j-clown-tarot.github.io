@@ -1,0 +1,3 @@
+style.styl
+.img_alt
+  display none !important
