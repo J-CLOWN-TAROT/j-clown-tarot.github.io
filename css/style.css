@@ -1387,7 +1387,7 @@
   cursor: zoom-in;
   padding: 1px;
 }
-#post .pjax article .img_alt {
+/* #post .pjax article .img_alt {
   text-align: center;
 }
 #post .pjax article .img_alt span {
@@ -1396,7 +1396,7 @@
   color: #969696;
   font-family: "Open Sans", "Hiragino Sans GB", sans-serif;
   display: inline-block;
-}
+} */
 #post .pjax article blockquote {
   color: #666;
   padding: 1px 23px;
