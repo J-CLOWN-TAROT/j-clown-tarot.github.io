@@ -1397,6 +1397,10 @@
   font-family: "Open Sans", "Hiragino Sans GB", sans-serif;
   display: inline-block;
 } */
+#post .pjax article .img_alt {
+  display: none !important;
+}
+
 #post .pjax article blockquote {
   color: #666;
   padding: 1px 23px;
