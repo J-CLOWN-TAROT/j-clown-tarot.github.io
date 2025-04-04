@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>about | Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="about | Hexo">
+  <title>计算机网络实训Lab2-4 | Hexo</title>
+  <meta name="keywords" content=" 计算机网络 ">
+  <meta name="description" content="计算机网络实训Lab2-4 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Lab2 ①配置静态路由，非常简单 ②通过ospf配置默认路由，从而实现局部的自动交换信息 ospf协议通过把大网络划分成多个area，从而大大减少了大型网络中路由表中network的数量，需要注意的是每一个area之间交流都要经过area0 &#x2F;&#x2F;这里的1是ospf的进程号 Router(config)#router ospf 1          &#x2F;&#x2F;这里的network ip wildcard">
 <meta property="og:type" content="article">
@@ -420,19 +420,36 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-计网Lab2" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">about</h1>
+        <h1 class="article-title">计算机网络实训Lab2-4</h1>
     
     <div class="article-meta">
         
         
         
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="计算机网络">计算机网络</a> > 
+            
+            <a  data-rel="计算机网络&lt;---&gt;计算机网络实训">计算机网络实训</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">计算机网络</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-04-02 18:40:59'>2025-04-02 18:40</time>
+            发布时间 : <time class="date" title='最后更新: 2025-04-04 22:06:15'>2025-04-04 00:00</time>
         
     </div>
     <div class="article-meta">
@@ -454,7 +471,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lab2"><span class="toc-text">Lab2</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -470,7 +487,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="Lab2"><a href="#Lab2" class="headerlink" title="Lab2"></a>Lab2</h1><p><img src="/../img/1743773116658.png" alt="1743773116658"></p>
+<p>①配置静态路由，非常简单</p>
+<p>②通过ospf配置默认路由，从而实现局部的自动交换信息</p>
+<p>ospf协议通过把大网络划分成多个area，从而大大减少了大型网络中路由表中network的数量，需要注意的是<strong>每一个area之间交流都要经过area0</strong></p>
+<pre><code>//这里的1是ospf的进程号
+Router(config)#router ospf 1         
+//这里的network ip wildcard area
+Router(config-router)#network 192.168.1.0 0.0.0.255 area 0
+Router(config-router)#network 192.168.2.0 0.0.0.255 area 0
+</code></pre>
+<p>由于这里的路由器都使用了两个端口，因此都要加入area0</p>
+<table>
+<thead>
+<tr>
+<th align="left">show ip ospf</th>
+<th>查看 OSPF 进程及区域细节的数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">show ip ospf database</td>
+<td>查看路由器 OSPF 数据库信息</td>
+</tr>
+<tr>
+<td align="left">show ip ospf interface</td>
+<td>查看接口 OSPF 信息</td>
+</tr>
+<tr>
+<td align="left">show ip ospf neighbor</td>
+<td>查看 OSPF 邻居信息</td>
+</tr>
+<tr>
+<td align="left">debug ip ospf events</td>
+<td>调试 OSPF 事件</td>
+</tr>
+</tbody></table>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3420048006@qq.com </span>
     </div>

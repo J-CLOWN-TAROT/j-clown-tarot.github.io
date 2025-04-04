@@ -6,15 +6,20 @@
   <meta name="keywords" content=" linux命令 ">
   <meta name="description" content="每天一个linux命令 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://example.com/about/index.html">
+<meta name="description" content="Lab2 ①配置静态路由，非常简单 ②通过ospf配置默认路由，从而实现局部的自动交换信息 ospf协议通过把大网络划分成多个area，从而大大减少了大型网络中路由表中network的数量，需要注意的是每一个area之间交流都要经过area0 &#x2F;&#x2F;这里的1是ospf的进程号 Router(config)#router ospf 1          &#x2F;&#x2F;这里的network ip wildcard">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络实训Lab2-4">
+<meta property="og:url" content="http://example.com/2025/04/04/%E8%AE%A1%E7%BD%91Lab2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Lab2 ①配置静态路由，非常简单 ②通过ospf配置默认路由，从而实现局部的自动交换信息 ospf协议通过把大网络划分成多个area，从而大大减少了大型网络中路由表中network的数量，需要注意的是每一个area之间交流都要经过area0 &#x2F;&#x2F;这里的1是ospf的进程号 Router(config)#router ospf 1          &#x2F;&#x2F;这里的network ip wildcard">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-02T10:40:59.000Z">
-<meta property="article:modified_time" content="2025-04-02T10:40:59.991Z">
+<meta property="og:image" content="http://example.com/img/1743773116658.png">
+<meta property="article:published_time" content="2025-04-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-04T14:06:15.282Z">
 <meta property="article:author" content="J Zk">
+<meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/1743773116658.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -246,7 +251,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(1)</small>
+                <small>(2)</small>
             
         </div>
     </li>
@@ -255,9 +260,43 @@
             
                 
     <li>
-        <div data-rel="hshs">
+        <div data-rel="计算机网络">
+            <i class="fold iconfont icon-right"></i>
+            计算机网络
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="计算机网络&lt;---&gt;计算机网络实训">
             
-            hshs
+            计算机网络实训
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="test">
+            
+            test
             <small>(1)</small>
         </div>
         
@@ -286,7 +325,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="1">
+<input type="hidden" id="yelog_site_posts_number" value="2">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -331,6 +370,10 @@
     <div class="tag-wrapper">
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>计算机网络</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>linux命令</a>
             </li>
         
@@ -342,12 +385,21 @@
     <nav id="title-list-nav">
         
         
-        <a id="top" class="全部文章 hshs "
+        <a id="top" class="全部文章 test "
            href="/2017/01/23/test/"
            data-tag="linux命令"
            data-author="" >
             <span class="post-title" title="每天一个linux命令">每天一个linux命令</span>
             <span class="post-date" title="2017-01-23 11:41:48">2017/01/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 计算机网络 计算机网络实训 "
+           href="/2025/04/04/%E8%AE%A1%E7%BD%91Lab2/"
+           data-tag="计算机网络"
+           data-author="" >
+            <span class="post-title" title="计算机网络实训Lab2-4">计算机网络实训Lab2-4</span>
+            <span class="post-date" title="2025-04-04 00:00:00">2025/04/04</span>
         </a>
         
         <div id="no-item-tips">
@@ -382,7 +434,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="hshs">hshs</a>
+            <a  data-rel="test">test</a>
             
         </span>
         
@@ -397,7 +449,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-04-03 00:47:36'>2017-01-23 11:41</time>
+            发布时间 : <time class="date" title='最后更新: 2025-04-04 21:49:54'>2017-01-23 11:41</time>
         
     </div>
     <div class="article-meta">
