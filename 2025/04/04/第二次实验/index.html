@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>计算机网络实训Lab2-4 | Hexo</title>
-  <meta name="keywords" content=" 计算机网络 ">
-  <meta name="description" content="计算机网络实训Lab2-4 | Hexo">
+  <title>Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -251,40 +251,6 @@
         </div>
     </li>
     
-        
-            
-                
-    <li>
-        <div data-rel="计算机网络">
-            <i class="fold iconfont icon-right"></i>
-            计算机网络
-            <small>(1)</small>
-        </div>
-        
-            <ul class="sub hide">
-                
-                    
-    <li>
-        <div data-rel="计算机网络&lt;---&gt;计算机网络实训">
-            
-            计算机网络实训
-            <small>(1)</small>
-        </div>
-        
-    </li>
-
-                
-            </ul>
-        
-    </li>
-
-            
-        
-    
-        
-            
-        
-    
 </ul>
 <div class="left-bottom">
     <div class="menus">
@@ -349,10 +315,6 @@
     <input id="tag-search" />
     <div class="tag-wrapper">
         
-            <li class="article-tag-list-item">
-                <i class="iconfont icon-tag"></i><a>计算机网络</a>
-            </li>
-        
     </div>
 
 </div>
@@ -361,12 +323,12 @@
     <nav id="title-list-nav">
         
         
-        <a  class="全部文章 计算机网络 计算机网络实训 "
+        <a  class="全部文章 "
            href="/2025/04/04/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%AE%9E%E9%AA%8C/"
-           data-tag="计算机网络"
+           data-tag=""
            data-author="" >
-            <span class="post-title" title="计算机网络实训Lab2-4">计算机网络实训Lab2-4</span>
-            <span class="post-date" title="2025-04-04 00:00:00">2025/04/04</span>
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-04-04 21:19:00">2025/04/04</span>
         </a>
         
         <div id="no-item-tips">
@@ -389,34 +351,15 @@
     <div class="pjax">
         <article id="post-第二次实验" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">计算机网络实训Lab2-4</h1>
-    
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="计算机网络">计算机网络</a> > 
-            
-            <a  data-rel="计算机网络&lt;---&gt;计算机网络实训">计算机网络实训</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color1">计算机网络</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-04-05 00:15:42'>2025-04-04 00:00</time>
+            发布时间 : <time class="date" title='最后更新: 2025-04-07 18:43:31'>2025-04-04 21:19</time>
         
     </div>
     <div class="article-meta">
@@ -454,7 +397,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Lab2"><a href="#Lab2" class="headerlink" title="Lab2"></a>Lab2</h1><p><img src="/../img/1743773116658.png" alt="1743773116658"></p>
+        <p>title: 计算机网络实训Lab2-4<br>date: 2025-04-04<br>categories:</p>
+<ul>
+<li>计算机网络</li>
+<li>计算机网络实训<br>tags:</li>
+<li>计算机网络</li>
+</ul>
+<h1 id="Lab2"><a href="#Lab2" class="headerlink" title="Lab2"></a>Lab2</h1><p><img src="/../img/1743773116658.png" alt="1743773116658"></p>
 <p>① 配置静态路由，非常简单</p>
 <p>② 通过 ospf 配置默认路由，从而实现局部的自动交换信息</p>
 <p>ospf 协议通过把大网络划分成多个 area，从而大大减少了大型网络中路由表中 network 的数量，需要注意的是 <strong>每一个 area 之间交流都要经过 area0</strong></p>
@@ -490,10 +439,183 @@ Router(config-router)#network 192.168.2.0 0.0.0.255 area 0
 </tr>
 </tbody></table>
 <h1 id="Lab3"><a href="#Lab3" class="headerlink" title="Lab3"></a>Lab3</h1><p><img src="/../img/1743779205657.png" alt="1743779205657"></p>
-<p>在单臂路由的配置中一定要为路由的端口分别划分VLAN的802.1Q的封装，从而实现VLAN间的转发</p>
+<p>①在单臂路由的配置中一定要为路由的端口分别划分VLAN的802.1Q的封装，从而实现VLAN间的转发</p>
 <pre><code>encapsulation dot1Q 10
 </code></pre>
-<h1 id="Lab4"><a href="#Lab4" class="headerlink" title="Lab4"></a>Lab4</h1>
+<p>②ACL的机制</p>
+<pre><code>R1(config)# access-list 110 permit tcp 192.168.1.0 0.0.0.255 any eq 80
+//思科中配置默认是deny any any
+R1(config)# access-list 110 deny ip any any 
+</code></pre>
+<p>1.<strong>ACL从上到下依次匹配</strong></p>
+<p>2.<strong>ACL默认在 ACL 末尾加上一条deny(permit) ip any any</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{no}  ip access-group access-list-number out(in)</td>
+<td>在出入时引用access-lists中对应number的验证,<strong>这里的出入是对于路由器而言</strong></td>
+</tr>
+<tr>
+<td>show access-lists &#x2F; show ip interface</td>
+<td>展示access-lists</td>
+</tr>
+<tr>
+<td>access-list access-list-number deny(permit) {protocal} source-ip wildcard-mask destination-ip wildcard-mask {eq port}</td>
+<td>创建一个access-list-number</td>
+</tr>
+<tr>
+<td>no access-list access-list-number</td>
+<td>直接删除编号为number整个项，<strong>此时端口仍然在这个分组，只是分组内容被删除了</strong></td>
+</tr>
+<tr>
+<td>show access-lists access-list-number<br /><br />Standard IP access list 30<br/>    10 permit 192.168.1.0, wildcard bits 0.0.0.255<br/>    20 deny any<br /><br />access-list 30 no 20</td>
+<td>这样可以指定删除某一条规则</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>ACL类型</th>
+<th>编号范围</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标准ACL</td>
+<td><code>1-99</code> 和 <code>1300-1999</code></td>
+<td>仅根据<strong>源 IP 地址</strong>进行过滤</td>
+</tr>
+<tr>
+<td>拓展ACL</td>
+<td><code>100-199</code> 和 <code>2000-2699</code></td>
+<td>可以根据<strong>源 IP、目标 IP、协议（如 TCP、UDP、ICMP）</strong>、以及<strong>端口号</strong>进行更细致的控制。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>服务名称</th>
+<th>实际端口</th>
+<th>协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>www</td>
+<td>80</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>https</td>
+<td>443</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>ftp</td>
+<td>21</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>telnet</td>
+<td>23</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>ssh</td>
+<td>22</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>smpt</td>
+<td>25</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>53</td>
+<td>UDP</td>
+</tr>
+</tbody></table>
+<h1 id="Lab4"><a href="#Lab4" class="headerlink" title="Lab4"></a>Lab4</h1><p><img src="/../img/1744022591566.png" alt="1744022591566"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>ip nat inside&#x2F;outside</td>
+<td>进入接口配置模式，启用 NAT，内网接口使用 inside，外部接口使用 outside</td>
+</tr>
+<tr>
+<td>静态NAT</td>
+<td>ip nat inside source static 内部IP 公网IP</td>
+<td>把内部IP转成公网IP</td>
+</tr>
+<tr>
+<td>动态NAT</td>
+<td>ip nat pool <pool-name> start-ip end-ip netmask &lt;255.255.255.0&gt;</td>
+<td>定义内部 NAT 地址池，pool-name 为地址池的名 字，start-ip和 end-ip为地址池中地址的开始和结束</td>
+</tr>
+<tr>
+<td>PAT</td>
+<td>ip nat inside source list <ACL> interface &lt;公网接口&gt; overload</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>show ip nat translations</td>
+<td>查看 NAT 转换记录</td>
+</tr>
+<tr>
+<td></td>
+<td>ip nat inside source list <ACL> <pool-name></td>
+<td>将访问控制列表access-list-number映射到 NAT 地址池</td>
+</tr>
+<tr>
+<td></td>
+<td>ip nat inside source list <ACL> pool <pool-name></td>
+<td>端口映射命令格式</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>IP 地址范围</th>
+<th>子网掩码</th>
+<th>CIDR 表示法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A 类</td>
+<td><strong>10.0.0.0 – 10.255.255.255</strong></td>
+<td>255.0.0.0</td>
+<td>10.0.0.0&#x2F;8</td>
+</tr>
+<tr>
+<td>B 类</td>
+<td><strong>172.16.0.0 – 172.31.255.255</strong></td>
+<td>255.240.0.0</td>
+<td>172.16.0.0&#x2F;12</td>
+</tr>
+<tr>
+<td>C 类</td>
+<td><strong>192.168.0.0 – 192.168.255.255</strong></td>
+<td>255.255.0.0 or 255.255.255.0</td>
+<td>192.168.0.0&#x2F;16 or &#x2F;24</td>
+</tr>
+</tbody></table>
+<p>①三层交换机如果要启用路由功能，要开启ip routing，并且不能进行子端口的划分，而是采用VLAN进行端口的划分<br>②对于由三层交换机构成的单臂路由，只需要在三层交换机上划分VLAN并且配置IP，交换机只需要划分VLAN，并不需要配置IP</p>
+<p><img src="/../img/1744021077642.png" alt="1744021077642"></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3420048006@qq.com </span>
     </div>
