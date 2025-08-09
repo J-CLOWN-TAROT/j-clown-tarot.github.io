@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ARP | Jclown&#39;s Blog</title>
-  <meta name="keywords" content=" 计算机网络 , ARP ">
-  <meta name="description" content="ARP | Jclown&#39;s Blog">
+  <title>git | Jclown&#39;s Blog</title>
+  <meta name="keywords" content=" 计算机网络 , git ">
+  <meta name="description" content="git | Jclown&#39;s Blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -315,9 +315,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-ARP" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">ARP</h1>
+        <h1 class="article-title">git</h1>
     
     <div class="article-meta">
         
@@ -329,7 +329,7 @@
             
             <a  data-rel="计算机网络">计算机网络</a> > 
             
-            <a  data-rel="计算机网络&lt;---&gt;理论">理论</a>
+            <a  data-rel="计算机网络&lt;---&gt;实验">实验</a>
             
         </span>
         
@@ -339,14 +339,14 @@
             
             <a class="color1">计算机网络</a>
             
-            <a class="color4">ARP</a>
+            <a class="color4">git</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-08-09 14:55:44'>2025-08-08 23:12</time>
+            发布时间 : <time class="date" title='最后更新: 2025-08-09 14:55:32'>2025-08-08 23:12</time>
         
     </div>
     <div class="article-meta">
@@ -368,7 +368,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-git-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">1. .git 目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9A%82%E5%AD%98%E5%8C%BA%EF%BC%88Staging-Area%EF%BC%89"><span class="toc-text">2. 暂存区（Staging Area）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%EF%BC%88Local-Repository%EF%BC%89"><span class="toc-text">3. 本地仓库（Local Repository）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AE%9E%E9%99%85%E8%A7%82%E5%AF%9F%E6%B5%81%E7%A8%8B"><span class="toc-text">4. 实际观察流程</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -384,7 +384,96 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <hr>
+<p><span style="font-weight:bold; font-size:2em;">.git文件结构介绍</span></p>
+<h2 id="1-git-目录结构"><a href="#1-git-目录结构" class="headerlink" title="1. .git 目录结构"></a>1. <code>.git</code> 目录结构</h2><p>在你的项目根目录执行：</p>
+<pre><code>tree .git /F
+</code></pre>
+<p>（Windows 用 <code>dir /s /b .git</code> 或装个 tree 工具）<br> 你会看到大概这样：</p>
+<pre><code>.git
+│   HEAD
+│   config
+│   description
+│   index      ← 暂存区（Staging Area）存放在这里
+│
+├───objects    ← 本地仓库存 commit、文件内容
+├───refs       ← 分支引用
+└───logs       ← 操作日志
+</code></pre>
+<hr>
+<h2 id="2-暂存区（Staging-Area）"><a href="#2-暂存区（Staging-Area）" class="headerlink" title="2. 暂存区（Staging Area）"></a>2. 暂存区（Staging Area）</h2><ul>
+<li>暂存区是一个 <strong>二进制文件</strong>，叫 <code>.git/index</code>。</li>
+<li>你 <code>git add</code> 之后，Git 会把文件的快照信息写进这个 index 文件。</li>
+<li>要看里面的内容，可以用：</li>
+</ul>
+<pre><code>git ls-files --stage
+</code></pre>
+<p>示例输出：</p>
+<pre><code>100644 6f5902ac237024bdd0c176cb93063dc4 0       README.md
+100644 8b1a9953c4611296a827abf8c47804d7 0       main.py
+</code></pre>
+<p>这就是暂存区记录的文件及其 blob ID（指向文件内容在本地仓库的位置）。</p>
+<hr>
+<h2 id="3-本地仓库（Local-Repository）"><a href="#3-本地仓库（Local-Repository）" class="headerlink" title="3. 本地仓库（Local Repository）"></a>3. 本地仓库（Local Repository）</h2><ul>
+<li>本地仓库存放在 <code>.git/objects</code> 目录里。</li>
+<li>你每次 <code>git commit</code>，Git 会：<ol>
+<li>把文件内容存成一个个 <strong>blob 对象</strong></li>
+<li>把目录结构存成 <strong>tree 对象</strong></li>
+<li>把提交信息和 tree ID 存成 <strong>commit 对象</strong></li>
+</ol>
+</li>
+<li>这些对象以哈希值为文件名，保存在 <code>.git/objects/xx/yyyyyy...</code> 这种形式里。</li>
+</ul>
+<p>你可以用：</p>
+<pre><code>git cat-file -p &lt;对象ID&gt;
+</code></pre>
+<p>来查看内容，例如：</p>
+<pre><code>git cat-file -p HEAD    # 查看当前分支的最新 commit
+</code></pre>
+<p>它会显示：</p>
+<pre><code>tree 5e3b6a...
+parent a3dcb4...
+author 你的名字 &lt;你的邮箱&gt; 时间戳
+committer 你的名字 &lt;你的邮箱&gt; 时间戳
+
+提交说明文字
+</code></pre>
+<hr>
+<h2 id="4-实际观察流程"><a href="#4-实际观察流程" class="headerlink" title="4. 实际观察流程"></a>4. 实际观察流程</h2><p>比如：</p>
+<pre><code>echo &quot;hello&quot; &gt; test.txt
+git add test.txt
+git ls-files --stage   # 能看到 test.txt 已进暂存区
+git commit -m &quot;add test.txt&quot;
+git cat-file -p HEAD   # 查看最新 commit 的信息
+</code></pre>
+<p>你会看到从工作区 → 暂存区 → 本地仓库的全过程。</p>
+<hr>
+<p>✅ 总结：</p>
+<ul>
+<li>暂存区 &#x3D; <code>.git/index</code>（可用 <code>git ls-files --stage</code> 查看）</li>
+<li>本地仓库 &#x3D; <code>.git/objects</code>（可用 <code>git cat-file</code> 查看对象内容）</li>
+</ul>
+<hr>
+<p><span style="font-size:2em;">仓库上传操作</span></p>
+<pre><code class="language-javascript"># 1. 初始化仓库（如果已经 init 过，可以跳过）
+git init
+
+# 2. 添加文件
+git add &#123;filename&#125;
+
+# 3. 提交一次（必要步骤，否则分支不存在）
+git commit -m &quot;初始提交：添加博客源码&quot;
+
+# 4. 把当前分支改名为 main
+git branch -M main
+
+# 5. 添加远程仓库地址
+git remote add origin git@github.com:J-CLOWN-TAROT/BLOG_Backup.git
+
+# 6. 推送到 GitHub
+git push -u origin main
+</code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3420048006@qq.com </span>
     </div>
