@@ -82,7 +82,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(5)</small>
+                <small>(6)</small>
             
         </div>
     </li>
@@ -94,7 +94,7 @@
         <div data-rel="电脑问题">
             <i class="fold iconfont icon-right"></i>
             电脑问题
-            <small>(2)</small>
+            <small>(3)</small>
         </div>
         
             <ul class="sub hide">
@@ -104,7 +104,7 @@
         <div data-rel="电脑问题&lt;---&gt;Windows">
             
             Windows
-            <small>(2)</small>
+            <small>(3)</small>
         </div>
         
     </li>
@@ -185,7 +185,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="5">
+<input type="hidden" id="yelog_site_posts_number" value="6">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -297,6 +297,15 @@
             <span class="post-date" title="2025-08-01 23:12:07">2025/08/01</span>
         </a>
         
+        
+        <a  class="全部文章 电脑问题 Windows "
+           href="/2025/08/01/C%E7%9B%98%E6%B8%85%E7%90%86/"
+           data-tag="Windows"
+           data-author="" >
+            <span class="post-title" title="C盘清理">C盘清理</span>
+            <span class="post-date" title="2025-08-01 23:12:07">2025/08/01</span>
+        </a>
+        
         <div id="no-item-tips">
 
         </div>
@@ -346,7 +355,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-08-09 14:55:44'>2025-08-08 23:12</time>
+            发布时间 : <time class="date" title='最后更新: 2025-08-10 10:30:44'>2025-08-08 23:12</time>
         
     </div>
     <div class="article-meta">
@@ -368,7 +377,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ARP-%E5%8D%8F%E8%AE%AE"><span class="toc-text">ARP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ARP-%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-text">1.ARP 报文格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0Ethernet-II"><span class="toc-text">①Ethernet II</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-ARP-%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-text">2.ARP 协议的格式</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -384,7 +393,67 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="ARP-协议"><a href="#ARP-协议" class="headerlink" title="ARP 协议"></a>ARP 协议</h1><p><span style="font-weight:bold;">ARP协议是数据链路层协议，主要用于在一个二级广播域内进行IP与MAC地址的映射。</span></p>
+<p><span style="font-style:italic;">二级广播域：指在同一个VLAN</span></p>
+<hr>
+<h2 id="1-ARP-报文格式"><a href="#1-ARP-报文格式" class="headerlink" title="1.ARP 报文格式"></a>1.ARP 报文格式</h2><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250809170106670.png" alt="image-20250809170106670"></p>
+<table>
+<thead>
+<tr>
+<th>Ethernet II</th>
+<th>ARP</th>
+<th>FCS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td>这里作为以太网帧校验码，在网卡中被去掉，因此不显示在 Wireshark 中</td>
+</tr>
+</tbody></table>
+<p><span style="font-weight:bold;">注意：ARP并不是网络层的协议，而是数据链路层</span></p>
+<h3 id="①Ethernet-II"><a href="#①Ethernet-II" class="headerlink" title="①Ethernet II"></a>①Ethernet II</h3><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250809173811273.png" alt="image-20250809173811273"></p>
+<table>
+<thead>
+<tr>
+<th>seg</th>
+<th>explain</th>
+<th>Bytes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dst</td>
+<td>全f，这里由于在二级广播域进行转发，因此MAC为全f</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Src</td>
+<td>为发送的主机的网卡MAC地址</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>ARP(0x0806)</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Payload</td>
+<td>网络层负载</td>
+<td>46-1500</td>
+</tr>
+<tr>
+<td>Padding</td>
+<td></td>
+<td>18</td>
+</tr>
+</tbody></table>
+<p><strong>为什要有padding</strong></p>
+<p>因为以以太网帧的最小长度为64Bytes，而ARP协议太短，必须要补足字节数</p>
+<p><strong>为什么要有最小帧长度？</strong><br> 因为以太网用 <strong>CSMA&#x2F;CD（载波监听多路访问&#x2F;冲突检测）</strong>，在旧的共享介质环境中，帧太短会让冲突检测失效，所以必须保证至少 64 字节。</p>
+<hr>
+<h2 id="2-ARP-协议的格式"><a href="#2-ARP-协议的格式" class="headerlink" title="2.ARP 协议的格式"></a>2.ARP 协议的格式</h2><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810093633510.png" alt="image-20250810093633510"></p>
+<p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810103040622.png" alt="image-20250810103040622"></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3420048006@qq.com </span>
     </div>
