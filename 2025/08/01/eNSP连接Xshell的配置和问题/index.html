@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ARP | Jclown&#39;s Blog</title>
-  <meta name="keywords" content=" 计算机网络 , ARP ">
-  <meta name="description" content="ARP | Jclown&#39;s Blog">
+  <title>eNSP连接Xshell的配置和问题 | Jclown&#39;s Blog</title>
+  <meta name="keywords" content=" eNSP , Xshell ">
+  <meta name="description" content="eNSP连接Xshell的配置和问题 | Jclown&#39;s Blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -341,9 +341,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-ARP" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-eNSP连接Xshell的配置和问题" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">ARP</h1>
+        <h1 class="article-title">eNSP连接Xshell的配置和问题</h1>
     
     <div class="article-meta">
         
@@ -353,9 +353,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="计算机网络">计算机网络</a> > 
+            <a  data-rel="电脑问题">电脑问题</a> > 
             
-            <a  data-rel="计算机网络&lt;---&gt;理论">理论</a>
+            <a  data-rel="电脑问题&lt;---&gt;Windows">Windows</a>
             
         </span>
         
@@ -363,16 +363,16 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">计算机网络</a>
+            <a class="color5">eNSP</a>
             
-            <a class="color4">ARP</a>
+            <a class="color2">Xshell</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-08-10 13:53:35'>2025-08-08 23:12</time>
+            发布时间 : <time class="date" title='最后更新: 2025-08-11 09:35:22'>2025-08-01 23:12</time>
         
     </div>
     <div class="article-meta">
@@ -394,7 +394,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ARP-%E5%8D%8F%E8%AE%AE"><span class="toc-text">ARP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ARP-%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-text">1.ARP 报文格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0Ethernet-II"><span class="toc-text">①Ethernet II</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-ARP-%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-text">2.ARP 协议的格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ARP%E6%95%B0%E6%8D%AE%E5%8C%85%E6%A0%BC%E5%BC%8F%EF%BC%8828%E5%AD%97%E8%8A%82%EF%BC%89"><span class="toc-text">ARP数据包格式（28字节）</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#eNSP%E8%BF%9E%E6%8E%A5Xshell%E7%9A%84%E9%85%8D%E7%BD%AE%E5%92%8C%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="toc-text">eNSP连接Xshell的配置和相关问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A0%E8%B0%83%E5%87%BAeNSP%E6%8E%A5%E5%8F%A3%E5%88%97%E8%A1%A8"><span class="toc-text">①调出eNSP接口列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A1Xshell%E8%BF%9E%E6%8E%A5"><span class="toc-text">②Xshell连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A2%E8%AE%BE%E7%BD%AE%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F%EF%BC%8C%E4%BB%8E%E8%80%8C%E5%8C%BA%E5%88%86%E5%91%BD%E4%BB%A4%E5%92%8C%E6%8A%A5%E9%94%99-%E5%8F%AF%E9%80%89"><span class="toc-text">③设置命令格式，从而区分命令和报错(可选)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%B7%A5%E5%85%B7-%E7%AA%81%E5%87%BA%E6%98%BE%E7%A4%BA%E9%9B%86"><span class="toc-text">1.工具-&gt;突出显示集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%B7%A5%E5%85%B7-%E6%8C%89%E9%94%AE%E5%AF%B9%E5%BA%94"><span class="toc-text">2.工具-&gt;按键对应</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%91%A3%E8%A7%A3%E5%86%B3Tab%E6%97%A0%E6%B3%95%E8%A1%A5%E5%85%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">④解决Tab无法补全的问题</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -410,119 +410,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="ARP-协议"><a href="#ARP-协议" class="headerlink" title="ARP 协议"></a>ARP 协议</h1><p><span style="font-weight:bold;">ARP协议是数据链路层协议，主要用于在一个二级广播域内进行IP与MAC地址的映射。</span></p>
-<p><span style="font-style:italic;">二级广播域：指在同一个VLAN</span></p>
+        <h1 id="eNSP连接Xshell的配置和相关问题"><a href="#eNSP连接Xshell的配置和相关问题" class="headerlink" title="eNSP连接Xshell的配置和相关问题"></a>eNSP连接Xshell的配置和相关问题</h1><hr>
+<h2 id="①调出eNSP接口列表"><a href="#①调出eNSP接口列表" class="headerlink" title="①调出eNSP接口列表"></a>①调出eNSP接口列表</h2><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810163104844.png" alt="image-20250810163104844"></p>
+<p>刚开始没有，可以<strong>Ctrl+R</strong>调出</p>
+<p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810164006557.png" alt="image-20250810164006557"></p>
+<p>接着我们可以找到右侧交换机接口是2002</p>
 <hr>
-<h2 id="1-ARP-报文格式"><a href="#1-ARP-报文格式" class="headerlink" title="1.ARP 报文格式"></a>1.ARP 报文格式</h2><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250809170106670.png" alt="image-20250809170106670"></p>
-<table>
-<thead>
-<tr>
-<th>Ethernet II</th>
-<th>ARP</th>
-<th>FCS</th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-<td>这里作为以太网帧校验码，在网卡中被去掉，因此不显示在 Wireshark 中</td>
-</tr>
-</tbody></table>
-<p><span style="font-weight:bold;">注意：ARP并不是网络层的协议，而是数据链路层</span></p>
-<h3 id="①Ethernet-II"><a href="#①Ethernet-II" class="headerlink" title="①Ethernet II"></a>①Ethernet II</h3><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250809173811273.png" alt="image-20250809173811273"></p>
-<table>
-<thead>
-<tr>
-<th>seg</th>
-<th>explain</th>
-<th>Bytes</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Dst</td>
-<td>全f，这里由于在二级广播域进行转发，因此MAC为全f</td>
-<td>6</td>
-</tr>
-<tr>
-<td>Src</td>
-<td>为发送的主机的网卡MAC地址</td>
-<td>6</td>
-</tr>
-<tr>
-<td>Type</td>
-<td>ARP(0x0806)</td>
-<td>2</td>
-</tr>
-<tr>
-<td>Payload</td>
-<td>网络层负载</td>
-<td>46-1500</td>
-</tr>
-<tr>
-<td>Padding</td>
-<td></td>
-<td>18</td>
-</tr>
-</tbody></table>
-<p><strong>为什要有padding</strong></p>
-<p>因为以以太网帧的最小长度为64Bytes，而ARP协议太短，必须要补足字节数</p>
-<p><strong>为什么要有最小帧长度？</strong><br> 因为以太网用 <strong>CSMA&#x2F;CD（载波监听多路访问&#x2F;冲突检测）</strong>，在旧的共享介质环境中，帧太短会让冲突检测失效，所以必须保证至少 64 字节。</p>
+<h2 id="②Xshell连接"><a href="#②Xshell连接" class="headerlink" title="②Xshell连接"></a>②Xshell连接</h2><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810215917783.png" alt="image-20250810215917783"></p>
+<p>注意这里的端口要与eNSP中的端口号一致</p>
+<p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810220220078.png" alt="image-20250810220220078"></p>
 <hr>
-<h2 id="2-ARP-协议的格式"><a href="#2-ARP-协议的格式" class="headerlink" title="2.ARP 协议的格式"></a>2.ARP 协议的格式</h2><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810093633510.png" alt="image-20250810093633510"></p>
-<h3 id="ARP数据包格式（28字节）"><a href="#ARP数据包格式（28字节）" class="headerlink" title="ARP数据包格式（28字节）"></a>ARP数据包格式（28字节）</h3><table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>字节长度</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>硬件类型（HTYPE）</td>
-<td>2字节</td>
-<td>表示物理网络类型，比如以太网是1</td>
-</tr>
-<tr>
-<td>协议类型（PTYPE）</td>
-<td>2字节</td>
-<td>表示要解析的协议类型，比如IPv4是0x0800</td>
-</tr>
-<tr>
-<td>硬件地址长度（HLEN）</td>
-<td>1字节</td>
-<td>硬件地址长度，比如以太网是6，这里指MAC</td>
-</tr>
-<tr>
-<td>协议地址长度（PLEN）</td>
-<td>1字节</td>
-<td>协议地址长度，比如IPv4是4</td>
-</tr>
-<tr>
-<td>操作码（OPER）</td>
-<td>2字节</td>
-<td>请求（1）或响应（2）</td>
-</tr>
-<tr>
-<td>发送方硬件地址（SHA）</td>
-<td>6字节</td>
-<td>发送方的MAC地址</td>
-</tr>
-<tr>
-<td>发送方协议地址（SPA）</td>
-<td>4字节</td>
-<td>发送方的IP地址</td>
-</tr>
-<tr>
-<td>目标硬件地址（THA）</td>
-<td>6字节</td>
-<td>目标的MAC地址，<span style="font-weight:bold;">ARP请求时为ff</span></td>
-</tr>
-<tr>
-<td>目标协议地址（TPA）</td>
-<td>4字节</td>
-<td>目标的IP地址</td>
-</tr>
-</tbody></table>
+<h2 id="③设置命令格式，从而区分命令和报错-可选"><a href="#③设置命令格式，从而区分命令和报错-可选" class="headerlink" title="③设置命令格式，从而区分命令和报错(可选)"></a>③设置命令格式，从而区分命令和报错(可选)</h2><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810220412368.png" alt="image-20250810220412368"></p>
+<h4 id="1-工具-突出显示集"><a href="#1-工具-突出显示集" class="headerlink" title="1.工具-&gt;突出显示集"></a>1.工具-&gt;突出显示集</h4><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810220507675.png" alt="image-20250810220507675"></p>
+<pre><code class="language-javascript">^[&lt;\[].*$
+</code></pre>
+<p>创建以上的正则表达式筛选关键字，颜色可以自由选择</p>
+<h4 id="2-工具-按键对应"><a href="#2-工具-按键对应" class="headerlink" title="2.工具-&gt;按键对应"></a>2.工具-&gt;按键对应</h4><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810220701436.png" alt="image-20250810220701436"></p>
+<p>Xshenll默认的复制粘贴是Crtl+Shift+C&#x2F;V，把原本的快捷键删掉，修改成Crtl+C&#x2F;V,方便操作</p>
+<hr>
+<h2 id="④解决Tab无法补全的问题"><a href="#④解决Tab无法补全的问题" class="headerlink" title="④解决Tab无法补全的问题"></a>④解决Tab无法补全的问题</h2><p>在Xshell连接之后，正常是无法自动补全的，secureCRT也是如此</p>
+<p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810221018640.png" alt="image-20250810221018640"></p>
+<p>打开   <strong>文件-&gt;默认会话属性</strong></p>
+<p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250810221108982.png" alt="image-20250810221108982"></p>
+<p>这里选择<strong>强制强制’Character-at-a-time’模式</strong>即可自动补全</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3420048006@qq.com </span>
