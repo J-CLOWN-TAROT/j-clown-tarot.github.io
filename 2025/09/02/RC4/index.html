@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mysql8.0误删sys数据库无备份恢复 | Jclown&#39;s Blog</title>
-  <meta name="keywords" content=" 运维 ">
-  <meta name="description" content="Mysql8.0误删sys数据库无备份恢复 | Jclown&#39;s Blog">
+  <title>Jclown&#39;s Blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Jclown&#39;s Blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="RC4¶在密码学中，RC4（来自 Rivest Cipher 4 的缩写）是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。RC4 是有线等效加密（WEP）中采用的加密算法，也曾经是 TLS 可采用的算法之一。 void rc4_init(unsigned char *s, unsigned char *key, unsigned long Len) &#x2F;&#x2F;初始化函数">
 <meta property="og:type" content="article">
@@ -494,34 +494,17 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-stm32介绍" class="article article-type-post" itemscope itemprop="blogPost">
-    
-        <h1 class="article-title">Mysql8.0误删sys数据库无备份恢复</h1>
+        <article id="post-RC4" class="article article-type-post" itemscope itemprop="blogPost">
     
     <div class="article-meta">
         
         
         
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="Mysql">Mysql</a>
-            
-        </span>
-        
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color3">运维</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-08-20 10:53:31'>2025-08-08 23:12</time>
+            发布时间 : <time class="date" title='最后更新: 2025-09-02 11:33:15'>2025-09-02 11:33</time>
         
     </div>
     <div class="article-meta">
@@ -543,7 +526,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RC4%C2%B6"><span class="toc-text">RC4</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -559,7 +542,64 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20250820105320320.png" alt="image-20250820105318070"></p>
+        <h2 id="RC4¶"><a href="#RC4¶" class="headerlink" title="RC4¶"></a>RC4<a target="_blank" rel="noopener" href="https://ctf-wiki.org/reverse/identify-encode-encryption/introduction/#rc4">¶</a></h2><p>在<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%86%E7%A2%BC%E5%AD%B8">密码学</a>中，<strong>RC4</strong>（来自 Rivest Cipher 4 的缩写）是一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B5%81%E5%8A%A0%E5%AF%86">流加密</a>算法，<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%86%E9%92%A5">密钥</a>长度可变。它加解密使用相同的密钥，因此也属于<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86">对称加密算法</a>。RC4 是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%9C%89%E7%B7%9A%E7%AD%89%E6%95%88%E5%8A%A0%E5%AF%86">有线等效加密</a>（WEP）中采用的加密算法，也曾经是 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE">TLS</a> 可采用的算法之一。</p>
+<pre><code>void rc4_init(unsigned char *s, unsigned char *key, unsigned long Len) //初始化函数
+&#123;
+    int i =0, j = 0;
+    unsigned char k[256] = &#123;0&#125;; // 必须为无符号类型，否则会导致密文部分错误
+    unsigned char tmp = 0;
+    for (i=0;i&lt;256;i++) &#123;
+        s[i] = i;
+        k[i] = key[i%Len];
+    &#125;
+    for (i=0; i&lt;256; i++) &#123;
+        j=(j+s[i]+k[i])%256;
+        tmp = s[i];
+        s[i] = s[j]; //交换s[i]和s[j]
+        s[j] = tmp;
+    &#125;
+ &#125;
+
+void rc4_crypt(unsigned char *s, unsigned char *Data, unsigned long Len) //加解密
+&#123;
+    int i = 0, j = 0, t = 0;
+    unsigned long k = 0;
+    unsigned char tmp;
+    for(k=0;k&lt;Len;k++) &#123;
+        i=(i+1)%256;
+        j=(j+s[i])%256;
+        tmp = s[i];
+        s[i] = s[j]; //交换s[x]和s[y]
+        s[j] = tmp;
+        t=(s[i]+s[j])%256;
+        Data[k] ^= s[t];
+     &#125;
+&#125; 
+</code></pre>
+<p>通过分析初始化代码，可以看出初始化代码中，对字符数组 s 进行了初始化赋值，且赋值分别递增。之后对 s 进行了 256 次交换操作。通过识别初始化代码，可以知道 rc4 算法。</p>
+<p>其伪代码表示为：</p>
+<p>初始化长度为 256 的 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/S%E7%9B%92">S 盒</a>。第一个 for 循环将 0 到 255 的互不重复的元素装入 S 盒。第二个 for 循环根据密钥打乱 S 盒。</p>
+<pre><code>  for i from 0 to 255
+     S[i] := i
+ endfor
+ j := 0
+ for( i=0 ; i&lt;256 ; i++)
+     j := (j + S[i] + key[i mod keylength]) % 256
+     swap values of S[i] and S[j]
+ endfor
+</code></pre>
+<p>下面 i,j 是两个指针。每收到一个字节，就进行 while 循环。通过一定的算法（(a),(b)）定位 S 盒中的一个元素，并与输入字节异或，得到 k。循环中还改变了 S 盒（©）。如果输入的是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%98%8E%E6%96%87">明文</a>，输出的就是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%86%E6%96%87">密文</a>；如果输入的是密文，输出的就是明文。</p>
+<pre><code> i := 0
+ j := 0
+ while GeneratingOutput:
+     i := (i + 1) mod 256   //a
+     j := (j + S[i]) mod 256 //b
+     swap values of S[i] and S[j]  //c
+     k := inputByte ^ S[(S[i] + S[j]) % 256]
+     output K
+ endwhile
+</code></pre>
+<p>此算法保证每 256 次循环中 S 盒的每个元素至少被交换过一次</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3420048006@qq.com </span>
