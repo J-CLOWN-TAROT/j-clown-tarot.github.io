@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Hyper-V与VitualBox不兼容 | Jclown&#39;s Blog</title>
-  <meta name="keywords" content=" Windows ">
-  <meta name="description" content="Hyper-V与VitualBox不兼容 | Jclown&#39;s Blog">
+  <title>静态路由 | Jclown&#39;s Blog</title>
+  <meta name="keywords" content=" 计算机网络 ">
+  <meta name="description" content="静态路由 | Jclown&#39;s Blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -594,9 +594,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Hyper-V与VitualBox兼容" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-静态路由配置" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hyper-V与VitualBox不兼容</h1>
+        <h1 class="article-title">静态路由</h1>
     
     <div class="article-meta">
         
@@ -606,9 +606,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="电脑问题">电脑问题</a> > 
+            <a  data-rel="计算机网络">计算机网络</a> > 
             
-            <a  data-rel="电脑问题&lt;---&gt;Windows">Windows</a>
+            <a  data-rel="计算机网络&lt;---&gt;理论">理论</a>
             
         </span>
         
@@ -616,14 +616,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color3">Windows</a>
+            <a class="color1">计算机网络</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-08-04 10:41:30'>2025-08-04 10:38</time>
+            发布时间 : <time class="date" title='最后更新: 2025-08-16 10:07:07'>2025-08-08 23:12</time>
         
     </div>
     <div class="article-meta">
@@ -645,7 +645,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1"><span class="toc-text">静态路由</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE"><span class="toc-text">1.静态路由配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BC%BA%E7%9C%81%E8%B7%AF%E7%94%B1"><span class="toc-text">2.缺省路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%9B%9E%E7%8E%AF%E8%B7%AF%E7%94%B1"><span class="toc-text">3.回环路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%B8%AD%E7%BB%A7%E8%B7%AF%E7%94%B1"><span class="toc-text">4.中继路由</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -661,8 +661,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><span style="font-weight:bold;">参考网址：</span><a target="_blank" rel="noopener" href="https://www.bilibili.com/opus/621113624609551396">https://www.bilibili.com/opus/621113624609551396</a></p>
-<p>核心问题：VitualBox和Hyper-V不兼容，因此在使用wsl2时需要开启Hyper-V，而随时用VitualBox时要关闭Hyper-V</p>
+        <h1 id="静态路由"><a href="#静态路由" class="headerlink" title="静态路由"></a>静态路由</h1><hr>
+<h2 id="1-静态路由配置"><a href="#1-静态路由配置" class="headerlink" title="1.静态路由配置"></a>1.静态路由配置</h2><pre><code class="language-javascript">ip route-static 192.168.1.0 mask &#123;下一跳&#125;
+ip route-static 192.168.1.0 mask &#123;出接口&#125;
+ip route-static 192.168.1.0 mask &#123;出接口&#125; &#123;下一跳&#125;
+</code></pre>
+<p>①这里的ip-address是指网段(与掩码异或后的IP)，当然也可以写正常的IP</p>
+<p>②这里下一跳指的是下一个三层设备的相邻接口</p>
+<p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250814172304340.png" alt="image-20250814172304340"></p>
+<p>比如这里的AR1，如果要将转发到172.16.x.x的数据包转发到AR2，那么下一跳的IP为<span style="font-weight:bold;">172.114.0.2</span></p>
+<pre><code class="language-javascript">ip route-static 172.16.0.0 255.255.0.0 172.114.0.2
+or
+ip route-static 172.16.0.0 16 172.114.0.2
+</code></pre>
+<hr>
+<h2 id="2-缺省路由"><a href="#2-缺省路由" class="headerlink" title="2.缺省路由"></a>2.缺省路由</h2><pre><code class="language-javascript">ip route-static 0.0.0.0 0 &#123;下一跳&#125;
+</code></pre>
+<p>缺省路由也叫默认路由，主要是用于无匹配IP时将数据包发送到默认路由器</p>
+<hr>
+<h2 id="3-回环路由"><a href="#3-回环路由" class="headerlink" title="3.回环路由"></a>3.回环路由</h2><pre><code class="language-c">[Huawei]interface LoopBack0                      
+[Huawei-LoopBack0]ip address 3.3.3.3 32
+</code></pre>
+<p>这个在路由中表示回环地址，接收到这个IP后会自己处理并且回传</p>
+<hr>
+<h2 id="4-中继路由"><a href="#4-中继路由" class="headerlink" title="4.中继路由"></a>4.中继路由</h2><p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250815160708947.png" alt="image-20250815160708947"></p>
+<pre><code class="language-javascript">ip route-static 4.4.4.4 32 172.16.0.1   //这里display 发现没有添加到路由表
+ip route-static 172.16.0.1 24 192.168.0.2
+</code></pre>
+<p>左图是第一条指令后的结果，右图是第二条指令后的结果</p>
+<p><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250815160817373.png" alt="image-20250815160817373" style="zoom: 33%;display: inline-block; float: left;" /><img src="https://raw.githubusercontent.com/J-CLOWN-TAROT/Typora-img/master/image-20250815161050721.png" alt="image-20250815161050721" style="zoom: 33%;display: inline-block; float: right;" /></p>
+<div style="clear: both;"></div>
+
+<p>这里需要注意的是，flag变成了RD，R-relay表示中继，也就是这个IP是一个中继的IP</p>
+<hr>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 3420048006@qq.com </span>
